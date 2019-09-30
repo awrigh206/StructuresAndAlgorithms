@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Andrew Wright 
  */
-public class BinaryTree <E> extends DataType 
+public class BinarySearchTree <E> extends DataType 
 {
     protected Cell<E> root;
     protected boolean first = true;
 
-    public BinaryTree() 
+    public BinarySearchTree() 
     {
         root = new Cell();
     }
