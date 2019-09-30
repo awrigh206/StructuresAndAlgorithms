@@ -22,6 +22,11 @@ public class BinarySearchTree <E> extends DataType
         root = new Cell();
     }
     
+    /**
+     * Used to add objects to the binary search tree.
+     * Maintains the order of the tree via recursuion and the various if statements
+     * @param obj 
+     */
     @Override
     public void add (Object obj)
     {
@@ -81,6 +86,10 @@ public class BinarySearchTree <E> extends DataType
         
     }
 
+    /**
+     * Returns all of the objects in the tree as a array of objects
+     * @return 
+     */
     @Override
     public Object[] getValues() 
     {
@@ -88,6 +97,9 @@ public class BinarySearchTree <E> extends DataType
         return values.toArray(new Object[values.size()]);
     }
 
+    /**
+     * Prints out all of the objects stored in the tree to the console
+     */
     @Override
     public void print() {
         ArrayList<E> values = recurseGet(root, new ArrayList<>());
@@ -97,6 +109,12 @@ public class BinarySearchTree <E> extends DataType
         }
     }
     
+    /**
+     * Gathers all of the values stored in the tree into an ArrayList and returns it 
+     * @param current
+     * @param values
+     * @return 
+     */
     private ArrayList<E> recurseGet(Cell current, ArrayList<E> values) 
     {
         
@@ -148,11 +166,20 @@ public class BinarySearchTree <E> extends DataType
         
     }
 
+    /**
+     * For looking through the tree for an object of the hashcode that you're looking for
+     * @param id
+     * @return 
+     */
     @Override
     public Object search(int id) {
         return lookUp(root, id);
     }
     
+    /**
+     * represents a cell in the tree. Use of generics allows it to hold objects of any class
+     * @param <E> 
+     */
     protected class Cell <E>
     {
         private Cell<E> right;
