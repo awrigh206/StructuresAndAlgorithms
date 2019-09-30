@@ -5,6 +5,7 @@
  */
 package DataStructures;
 
+import dsa_algorithms.Sorting.ExampleObject;
 import java.util.ArrayList;
 
 /**
@@ -83,7 +84,8 @@ public class BinarySearchTree <E> extends DataType
     @Override
     public Object[] getValues() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<E> values = recurseGet(root, new ArrayList<>());
+        return values.toArray(new Object[values.size()]);
     }
 
     @Override
@@ -114,6 +116,41 @@ public class BinarySearchTree <E> extends DataType
             values.add((E)current.getValue());
         return values;
         
+    }
+    
+    /**
+     * This is used to look through the tree for a single value
+     * @param current
+     * @return 
+     */
+    private E lookUp(Cell current, int id) 
+    {
+        int currentId = (current.getValue()).hashCode();
+        
+        if(currentId == id)
+            return (E)current.getValue();
+        
+        else if(current.hasLeft())
+        {
+            return lookUp(current.getLeft(),id);
+            //current.setLeft(null);
+        }
+            
+        else if(current.hasRight())
+        {
+            return lookUp(current.getRight(),id);
+            //current.setRight(null);
+        }
+        
+        if(!current.hasRight()&&  !current.hasLeft())
+            return null;
+        return null;
+        
+    }
+
+    @Override
+    public Object search(int id) {
+        return lookUp(root, id);
     }
     
     protected class Cell <E>

@@ -64,6 +64,11 @@ public class Heap extends DataType
             System.out.println(values.get(i).toString());
         }
     }
+
+    @Override
+    public Object search(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

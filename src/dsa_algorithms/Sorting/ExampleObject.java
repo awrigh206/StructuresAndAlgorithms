@@ -54,7 +54,7 @@ public class ExampleObject
         hash = 53 * hash + this.id;
         hash = 53 * hash + Objects.hashCode(this.name);
         hash = 53 * hash + Objects.hashCode(this.notes);
-        return hash;
+        return id;
     }
 
     @Override

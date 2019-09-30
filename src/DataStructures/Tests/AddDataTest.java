@@ -21,15 +21,18 @@ public class AddDataTest <E>
         dataType.add(new ExampleObject(0));
         dataType.add(new ExampleObject(22));
         dataType.add(new ExampleObject(3));
-//        dataType.add(new ExampleObject(198));
-//        dataType.add(new ExampleObject(1));
-//        dataType.add(new ExampleObject(5));
-//        dataType.add(new ExampleObject(10));
-//        dataType.add(new ExampleObject(11));
-//        dataType.add(new ExampleObject(16));
-//        dataType.add(new ExampleObject(4));
-//        dataType.add(new ExampleObject(100));
-        dataType.print();
+        dataType.add(new ExampleObject(198));
+        dataType.add(new ExampleObject(1));
+        dataType.add(new ExampleObject(5));
+        dataType.add(new ExampleObject(10));
+        dataType.add(new ExampleObject(11));
+        dataType.add(new ExampleObject(16));
+        dataType.add(new ExampleObject(4));
+        dataType.add(new ExampleObject(100));
+        
+        
+        //dataType.print();
+        System.out.println(dataType.search(22));
         //System.out.println( "The result: "+dataType.toString());
     }
     

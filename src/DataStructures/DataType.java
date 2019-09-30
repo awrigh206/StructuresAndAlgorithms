@@ -14,4 +14,5 @@ public abstract class DataType <E>
     public abstract void add(E obj);
     public abstract E[] getValues();
     public abstract void print();
+    public abstract E search(int id);
 }
