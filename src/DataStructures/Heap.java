@@ -5,70 +5,60 @@
  */
 package DataStructures;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+
 
 /**
  *
  * @author Andrew Wright
  */
-public class Heap extends DataType
+public class Heap <E> extends BinarySearchTree
 {
-    ArrayList<Object> values = new ArrayList<>();
-    
-    public void add(Object toAdd)
-    {
-        boolean beenAdded = false;
-        if(values.isEmpty())
-        {
-            values.add(toAdd);
-        }
-            
-        
-        for(int i=0; i< values.size();i++)
-        {
-//            System.err.println("to add: "+toAdd.hashCode());
-//            System.err.println("value[i]: "+values.get(i).hashCode());
-            if(toAdd.hashCode()<values.get(i).hashCode())
-            {
-                values.add(toAdd);
-                swap(values.size()-1,i);
-                beenAdded = true;
-                break;
-            }
-        }
-        
-        if(!beenAdded)
-        {
-            values.add(toAdd);
-        }
-    }
-    
-    private void swap(int firstIndex, int secondIndex)
-    {
-        
-        Object temp = values.get(firstIndex);
-        values.set(firstIndex, values.get(secondIndex));
-        values.set(secondIndex, temp);
-    }
-
-    public Object[] getValues() 
-    {
-        return values.toArray(new Object[values.size()]);
-    }
-    
-    public void print()
-    {
-        for(int i=0;i<values.size();i++)
-        {
-            System.out.println(values.get(i).toString());
-        }
-    }
 
     @Override
-    public Object search(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void add(Object obj) 
+    {
+        place(new Cell(obj),root);
+           
+            
     }
+    
+    private void place(Cell obj, Cell current)
+    {
+        System.err.println("hello there");
+        boolean first = true;
+        
+        if(first)
+        {
+            root = obj;
+            first = false;
+        }
+            
+        else if(obj.hashCode()<current.hashCode())
+        {
+            obj.setLeft(current);
+            current.getPrevious().setLeft(obj);
+        }
+        
+        else
+        {
+            if(!current.hasLeft())
+            {
+                current.setLeft(obj);
+            }
+            
+            if(!current.hasRight())
+            {
+                current.setRight(obj);
+            }
+            
+            if(current.hasLeft()&& current.hasRight())
+            {
+                place(obj, root.getLeft());
+            }
+        }
+    }
+    
+    
     
     
 }

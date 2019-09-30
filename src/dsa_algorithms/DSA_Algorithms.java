@@ -34,7 +34,7 @@ public class DSA_Algorithms
 //        SortTest test2 = new SortTest();
 //        test2.run(new Bubble());
         AddDataTest dataTest = new AddDataTest();
-        dataTest.run(new BinarySearchTree());
+        dataTest.run(new Heap());
     }
     
 }
