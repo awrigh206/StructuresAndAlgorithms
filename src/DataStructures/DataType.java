@@ -11,7 +11,7 @@ package DataStructures;
  */
 public abstract class DataType <E>
 {
-    public abstract void add(Object obj);
-    public abstract Object[] getValues();
+    public abstract void add(E obj);
+    public abstract E[] getValues();
     public abstract void print();
 }

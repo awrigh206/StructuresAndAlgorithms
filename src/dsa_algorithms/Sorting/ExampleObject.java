@@ -54,7 +54,7 @@ public class ExampleObject
         hash = 53 * hash + this.id;
         hash = 53 * hash + Objects.hashCode(this.name);
         hash = 53 * hash + Objects.hashCode(this.notes);
-        return id;
+        return hash;
     }
 
     @Override
@@ -84,6 +84,7 @@ public class ExampleObject
     @Override
     public String toString() {
         return "ExampleObject{" + "id=" + id + ", name=" + name + ", notes=" + notes + '}';
+    //return id+"";
     }
     
     

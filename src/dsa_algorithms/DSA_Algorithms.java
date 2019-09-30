@@ -5,6 +5,7 @@
  */
 package dsa_algorithms;
 
+import DataStructures.BinaryTree;
 import DataStructures.Heap;
 import DataStructures.Tests.AddDataTest;
 import dsa_algorithms.Sorting.Bubble;
@@ -33,7 +34,7 @@ public class DSA_Algorithms
 //        SortTest test2 = new SortTest();
 //        test2.run(new Bubble());
         AddDataTest dataTest = new AddDataTest();
-        dataTest.run(new Heap());
+        dataTest.run(new BinaryTree());
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package DataStructures;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrew Wright 
@@ -12,51 +14,70 @@ package DataStructures;
 public class BinaryTree <E> extends DataType 
 {
     private Cell<E> root;
-    private Cell<E> current;
+    private boolean first = true;
+
+    public BinaryTree() 
+    {
+        root = new Cell();
+    }
     
     @Override
     public void add (Object obj)
     {
+        Cell<E> current;
         boolean added = false;
         current = root;
-        if(root == null)
+        
+        if(first)
         {
             root = new Cell(obj);
+            root.setPrevious(null);
+            first = false;
         }
         
-        while(!added)
+        else 
         {
-            if(obj.hashCode()< current.getValue().hashCode())
+            while(!added)
             {
-                if(!current.hasLeft())
+                int currentHash = current.getValue().hashCode();
+                int toAddHash = obj.hashCode();
+
+                if(toAddHash<= currentHash)
                 {
-                    //If cell does not have a left and the obj to be added is less than the current cell value
-                    current.setLeft(new Cell(obj));
-                    added=true;
+                    if(!current.hasLeft())
+                    {
+                        //If cell does not have a left and the obj to be added is less than the current cell value
+                        current.setLeft(new Cell(obj));
+                        current.getLeft().setPrevious(current);
+                        added=true;
+                    }
+
+                    else
+                    {
+                        current = current.getLeft();
+                    }
                 }
-                
-                else
+
+                else if(obj.hashCode()> current.getValue().hashCode())
                 {
-                    current = current.getLeft();
-                }
-            }
-            
-            else if(obj.hashCode()> current.getValue().hashCode())
-            {
-                if(!current.hasRight())
-                {
-                    //If cell does not have a right and the obj to be added is greater than the current cell value
-                    current.setRight(new Cell(obj));
-                    added= true;
-                }
-                
-                else
-                {
-                    //Move right in the tree if that right exists 
-                    current = current.getRight();
+                    if(!current.hasRight())
+                    {
+                        //If cell does not have a right and the obj to be added is greater than the current cell value
+                        current.setRight(new Cell(obj));
+                        current.getRight().setPrevious(current);
+                        added= true;
+                    }
+
+                    else
+                    {
+                        //Move right in the tree if that right exists 
+                        current = current.getRight();
+                    }
                 }
             }
         }
+        
+        
     }
 
     @Override
@@ -66,14 +87,93 @@ public class BinaryTree <E> extends DataType
 
     @Override
     public void print() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        printRecurse(root);
+    }
+    
+    public void printRecurse(Cell current) 
+    {
+        //Cell<E> current = root;
+        ArrayList<E> values = new ArrayList<>();
+        
+        if(current.hasLeft())
+        {
+            printRecurse(current.getLeft());
+            current.setLeft(null);
+        }
+            
+        if(current.hasRight())
+        {
+            printRecurse(current.getRight());
+            current.setRight(null);
+        }
+        
+        if(!current.hasRight()&&  !current.hasLeft())
+            System.out.println(current.getValue());
+            
+        
+        
+//        while (current != null)
+//        {
+//            while(current.hasLeft())
+//            {
+//                current = current.getLeft();
+//                if(!current.hasRight()  && !current.hasLeft())
+//                {
+//                    System.out.println(current.getValue().toString());
+//                    current = current.getPrevious();
+//                    current.setLeft(null);
+//                } 
+//
+//                while(current.hasRight())
+//                {
+//                    current = current.getRight();
+//                    if(!current.hasLeft() && !current.hasRight())
+//                    {
+//                        System.out.println(current.getValue().toString());
+//                        current = current.getPrevious();
+//                        current.setRight(null);
+//                        break;
+//                    } 
+//                }
+//            }
+//
+//            while(current.hasRight())
+//            {
+//                current = current.getRight();
+//                if(!current.hasRight()  && !current.hasLeft())
+//                {
+//                    System.out.println(current.getValue().toString());
+//                    current = current.getPrevious();
+//                    current.setRight(null);
+//                } 
+//
+//                while(current.hasLeft())
+//                {
+//                    current = current.getLeft();
+//                    if(!current.hasLeft() && !current.hasRight())
+//                    {
+//                        System.out.println(current.getValue().toString());
+//                        current = current.getPrevious();
+//                        current.setLeft(null);
+//                        break;
+//                    } 
+//                }
+//            }
+//        }
+        
     }
     
     private class Cell <E>
     {
         private Cell<E> right;
         private Cell<E> left;
+        private Cell<E> previous;
         private E value;
+        
+        public Cell()
+        {
+            value = null;
+        }
 
         public Cell(E value) {
             this.value = value;
@@ -102,7 +202,15 @@ public class BinaryTree <E> extends DataType
         public void setValue(E value) {
             this.value = value;
         }
-        
+
+        public Cell<E> getPrevious() {
+            return previous;
+        }
+
+        public void setPrevious(Cell<E> previous) {
+            this.previous = previous;
+        }
+
         public boolean hasLeft()
         {
             if(left!= null)
@@ -119,14 +227,17 @@ public class BinaryTree <E> extends DataType
                 return false;
         }
 
-       
-        
+        @Override
+        public String toString() {
+            return "Cell{" + "right=" + right + ", left=" + left + ", value=" + value + '}';
+        }
         
     }
-    
 
-    
-    
+    @Override
+    public String toString() {
+        return "BinaryTree{" + "root=" + root + '}';
+    }
 }
 
 
