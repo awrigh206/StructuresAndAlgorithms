@@ -1,0 +1,5 @@
+Unsorted items enter as an array/ arraylist
+compare the first two items in list 
+if left is bigger than the right than switch items positions 
+else leave where they are 
+after comparison and possible move is complete move next comparison one place to the right 

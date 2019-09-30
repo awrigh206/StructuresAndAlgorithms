@@ -1,0 +1,7 @@
+Get in unsorted values as an array 
+You have a sorted list and an unsorted list
+Start from the lft of the unsorted list
+move first item from unsorted to the sorted (as is only one element it must be sorted)
+Move next element into the sorted list (left to right motion)
+Compare the newly inserted to items in the list
+move it do its designated position
