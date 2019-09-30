@@ -24,8 +24,6 @@ public class Heap <E> extends BinarySearchTree
     
     private void place(Cell obj, Cell current)
     {
-        System.err.println("hello there");
-        boolean first = true;
         
         if(first)
         {
@@ -36,7 +34,13 @@ public class Heap <E> extends BinarySearchTree
         else if(obj.hashCode()<current.hashCode())
         {
             obj.setLeft(current);
-            current.getPrevious().setLeft(obj);
+            
+            if(current.getPrevious()!=null && !isFull(current.getPrevious().getLeft()))
+                current.getPrevious().setLeft(obj);
+            else if(current.getPrevious()!=null && !isFull(current.getPrevious().getRight()))
+                current.getPrevious().setRight(obj);
+            else
+                place(obj,current.getLeft());
         }
         
         else
@@ -53,9 +57,22 @@ public class Heap <E> extends BinarySearchTree
             
             if(current.hasLeft()&& current.hasRight())
             {
-                place(obj, root.getLeft());
+                if(!isFull(root.getLeft()))
+                    place(obj, root.getLeft());
+                else if (!isFull(root.getRight()))
+                    place(obj, root.getRight());
+                else
+                    place(obj, root.getLeft());
             }
         }
+    }
+    
+    private boolean isFull(Cell current)
+    {
+        if(current.hasLeft() && current.hasRight())
+            return true;
+        else 
+            return false;
     }
     
     

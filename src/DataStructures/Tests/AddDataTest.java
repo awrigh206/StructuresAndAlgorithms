@@ -31,8 +31,8 @@ public class AddDataTest <E>
         dataType.add(new ExampleObject(100));
         
         
-        //dataType.print();
-        System.out.println(dataType.search(22));
+        dataType.print();
+        //System.out.println(dataType.search(22));
         //System.out.println( "The result: "+dataType.toString());
     }
     
