@@ -4,7 +4,9 @@ A few basic algorithms and data structures implemented in java.
 
 Included Algorithms: Bubble sort, Insertion sort, Heap sort
 
-Included Data Structures: Linked List, Heap and Binary Search Tree
+Included Data Structures: Linked List, Heap and Binary Search Tree.
+
+All alogirthms are generic and work with all objects. (you will need to override the hashcode function on objects for the sort functions to operate).
 
 ## To-Do
 
